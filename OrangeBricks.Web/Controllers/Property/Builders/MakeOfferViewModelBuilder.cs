@@ -18,7 +18,7 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
 
             return new MakeOfferViewModel
             {
-                PropertyId = property.Id,
+                Property_Id = property.Property_Id,
                 PropertyType = property.PropertyType,
                 StreetName = property.StreetName,
                 Offer = 100000 // TODO: property.SuggestedAskingPrice

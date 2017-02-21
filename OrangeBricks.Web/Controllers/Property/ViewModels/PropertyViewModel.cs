@@ -6,7 +6,7 @@ namespace OrangeBricks.Web.Controllers.Property.ViewModels
         public string Description { get; set; }
         public int NumberOfBedrooms { get; set; }
         public string PropertyType { get; set; }
-        public int Id { get; set; }
+        public int Property_Id { get; set; }
         public bool IsListedForSale { get; set; }
     }
 }

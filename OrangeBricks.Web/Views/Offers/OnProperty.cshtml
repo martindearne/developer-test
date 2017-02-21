@@ -1,8 +1,9 @@
 ﻿@model OrangeBricks.Web.Controllers.Offers.ViewModels.OffersOnPropertyViewModel
-
+@using OrangeBricks.Web.Controllers.Property.Builders
 @{
     ViewBag.Title = "Offers on Your Property";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    username user = new username();
 }
 
 <h2>@ViewBag.Title</h2>
@@ -23,6 +24,7 @@
         <div>
             <p><strong>Offer Amount: </strong> £@offer.Amount</p>
             <p><strong>Offer Made At: </strong> @offer.CreatedAt.ToLongTimeString() on @offer.CreatedAt.ToShortDateString()</p>
+            <p><strong>User: </strong> @user.GetUserName(offer.user)</p>
             <p><strong>Status: </strong> @offer.Status</p>
         </div>
 

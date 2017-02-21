@@ -21,7 +21,7 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                     .Where(p => p.SellerUserId == sellerId)
                     .Select(p => new PropertyViewModel
                     {
-                        Id = p.Id,
+                        Property_Id = p.Property_Id,
                         StreetName = p.StreetName,
                         Description = p.Description,
                         NumberOfBedrooms = p.NumberOfBedrooms,

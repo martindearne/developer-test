@@ -20,31 +20,39 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
             var properties = _context.Properties
                 .Where(p => p.IsListedForSale);
 
+
             if (!string.IsNullOrWhiteSpace(query.Search))
             {
-                properties = properties.Where(x => x.StreetName.Contains(query.Search) 
+                 properties = properties
+                    .Where(x => x.StreetName.Contains(query.Search)
                     || x.Description.Contains(query.Search));
-            }
 
-            return new PropertiesViewModel
+
+                return new PropertiesViewModel
+                {
+                    Properties = properties
+                        .ToList()
+                        .Select(MapViewModel)
+                        .ToList(),
+                    Search = query.Search
+                };
+            }
+            else
             {
-                Properties = properties
-                    .ToList()
-                    .Select(MapViewModel)
-                    .ToList(),
-                Search = query.Search
-            };
+                return null;
+            }
         }
 
         private static PropertyViewModel MapViewModel(Models.Property property)
         {
             return new PropertyViewModel
             {
-                Id = property.Id,
+                Property_Id = property.Property_Id,
                 StreetName = property.StreetName,
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
-                PropertyType = property.PropertyType
+                PropertyType = property.PropertyType,
+                IsListedForSale = property.IsListedForSale
             };
         }
     }

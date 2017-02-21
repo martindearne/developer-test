@@ -7,7 +7,7 @@ namespace OrangeBricks.Web.Models
     public class Property
     {
         [Key]
-        public int Id { get; set; }
+        public int Property_Id { get; set; }
 
         [Required]
         public string PropertyType { get; set; }
@@ -27,5 +27,7 @@ namespace OrangeBricks.Web.Models
         public bool IsListedForSale { get; set; }
 
         public ICollection<Offer> Offers { get; set; }
+
+        public ICollection<Viewing> Viewings { get; set; }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model OrangeBricks.Web.Controllers.Viewings.ViewModels.ViewingsViewModel
+
+@{
+    ViewBag.Title = "Book Viewing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>When would you like to book a viewing of the <strong>@Model.PropertyType</strong> on <strong>@Model.StreetName</strong>?</p>
+@using (Html.BeginForm("BookViewing", "Viewings", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.dateTimeBooking, "Viewing Date & Time", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dateTimeBooking, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dateTimeBooking, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.Hidden("Property_Id", Model.Property_Id)
+    </div>
+    <div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Book Viewing" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back To Property Search", "Index", "Property")
+</div>

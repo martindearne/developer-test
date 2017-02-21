@@ -18,7 +18,8 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
                PropertyType = command.PropertyType,
                StreetName = command.StreetName,
                Description = command.Description,
-               NumberOfBedrooms = command.NumberOfBedrooms
+               NumberOfBedrooms = command.NumberOfBedrooms,
+               IsListedForSale = true   //Bug: Defaulting Property for sale to false
             };
 
             property.SellerUserId = command.SellerUserId;

@@ -11,6 +11,7 @@ namespace OrangeBricks.Web.Controllers.Offers.ViewModels
         public bool HasOffers { get; set; }
         public IEnumerable<OfferViewModel> Offers { get; set; }
         public int PropertyId { get; set; }
+       
     }
 
     public class OfferViewModel
@@ -20,5 +21,6 @@ namespace OrangeBricks.Web.Controllers.Offers.ViewModels
         public DateTime CreatedAt { get; set; }
         public bool IsPending { get; set; }
         public string Status { get; set; }
+        public string user { get; set; }
     }
 }

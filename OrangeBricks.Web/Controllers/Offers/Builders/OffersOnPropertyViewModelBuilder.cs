@@ -17,12 +17,12 @@ namespace OrangeBricks.Web.Controllers.Offers.Builders
 
         public OffersOnPropertyViewModel Build(int id)
         {
-            var property = _context.Properties
-                .Where(p => p.Id == id)
-                .Include(x => x.Offers)
-                .SingleOrDefault();
+            var property1 = _context.Properties
+            .Include(x => x.Offers)
+            .Where(p => p.Property_Id == id)
+            .SingleOrDefault();
 
-            var offers = property.Offers ?? new List<Offer>();
+            var offers = property1.Offers ?? new List<Offer>();
 
             return new OffersOnPropertyViewModel
             {
@@ -33,12 +33,16 @@ namespace OrangeBricks.Web.Controllers.Offers.Builders
                     Amount = x.Amount,
                     CreatedAt = x.CreatedAt,
                     IsPending = x.Status == OfferStatus.Pending,
-                    Status = x.Status.ToString()
+                    Status = x.Status.ToString(),
+                    user = x.userId,
+
+                    
                 }),
-                PropertyId = property.Id, 
-                PropertyType = property.PropertyType,
-                StreetName = property.StreetName,
-                NumberOfBedrooms = property.NumberOfBedrooms
+                PropertyId = property1.Property_Id,
+                PropertyType = property1.PropertyType,
+                StreetName = property1.StreetName,
+                NumberOfBedrooms = property1.NumberOfBedrooms
+                
             };
         }
     }

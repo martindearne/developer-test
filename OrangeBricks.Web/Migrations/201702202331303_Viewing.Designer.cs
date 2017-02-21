@@ -6,14 +6,14 @@ namespace OrangeBricks.Web.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class Viewing : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Viewing));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505052030221_InitialCreate"; }
+            get { return "201702202331303_Viewing"; }
         }
         
         string IMigrationMetadata.Source

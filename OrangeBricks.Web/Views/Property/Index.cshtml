@@ -9,6 +9,7 @@
 
 @using (Html.BeginForm("Index", "Property", FormMethod.Get, new { @class = "form-horizontal" }))
 {
+    @Html.AntiForgeryToken()
     <div class="form-group form-group-lg">
         @Html.LabelFor(x => x.Search, "Search:", new { @class = "col-sm-2 control-label" })
         <div class="col-sm-8">
@@ -20,17 +21,26 @@
     </div>
     
 }
-
+@if (Model != null)
+{
 <p>@Model.Properties.Count properties matching your criteria...</p>
 
-@foreach (var property in Model.Properties)
+foreach (var property in Model.Properties)
 {
     <hr />
     <h3>@property.StreetName</h3>
     <p>@property.NumberOfBedrooms bedroom @property.PropertyType</p>
     <p>@property.Description</p>
 
-    <a href="@Url.Action("MakeOffer", "Property", new {id = property.Id})" class="btn btn-primary">
+    <a href="@Url.Action("MakeOffer", "Property", new { id = property.Property_Id })" class="btn btn-primary">
         Make Offer
     </a>
+    <br />
+    <br />
+    <a href="@Url.Action("Viewings", "Viewings", new { id = property.Property_Id })" class="btn btn-primary">
+        Book Viewing
+    </a>
 }
+}
+<br />
+@Html.ActionLink("Back To Home Page", "Index", "Home")

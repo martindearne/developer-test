@@ -3,10 +3,40 @@ namespace OrangeBricks.Web.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Offers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Amount = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(nullable: false),
+                        UpdatedAt = c.DateTime(nullable: false),
+                        userId = c.String(),
+                        property_Property_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Properties", t => t.property_Property_Id)
+                .Index(t => t.property_Property_Id);
+            
+            CreateTable(
+                "dbo.Properties",
+                c => new
+                    {
+                        Property_Id = c.Int(nullable: false, identity: true),
+                        PropertyType = c.String(nullable: false),
+                        StreetName = c.String(nullable: false),
+                        Description = c.String(nullable: false),
+                        NumberOfBedrooms = c.Int(nullable: false),
+                        SellerUserId = c.String(nullable: false),
+                        IsListedForSale = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Property_Id);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -83,17 +113,21 @@ namespace OrangeBricks.Web.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Offers", "property_Property_Id", "dbo.Properties");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Offers", new[] { "property_Property_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Properties");
+            DropTable("dbo.Offers");
         }
     }
 }
